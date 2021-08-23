@@ -14,6 +14,10 @@ $ nest g co
 
 # Generate controller in specified path in dry run mode
 $ nest generate controller modules/abc --dry-run
+
+# Generate customer service
+$ nest g s
+$ nest generate service
 ```
 
 
