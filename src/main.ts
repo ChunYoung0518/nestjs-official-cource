@@ -9,6 +9,9 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
       transform: true,
+      transformOptions: {
+        enableImplicitConversion: true, //do not need Type decorator (in PaginationQueryDto) if this option is used
+      },
     }),
   );
   await app.listen(3000);
