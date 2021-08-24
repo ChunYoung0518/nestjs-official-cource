@@ -36,6 +36,21 @@ $ docker-compose up -d
 
 # Install TypeORM dependency for PostgreSQL
 $ npm i @nestjs/typeorm typeorm pg
+
+# Create a TypeOrm Migration
+$ npx typeorm migration:create -n CoffeeRefactor
+
+# Run migrations
+# 1. Compile the project
+$ npm run build
+# 2. Create a migration or let TypeOrm generate a migration for you
+$ npx typeorm migration:create -n CoffeeRefactor
+$ npx typeorm migration:generate -n SchemaSync
+# 3 Run migrations
+$ npx typeorm migration:run
+# 4. Revert migrations
+$ npx typeorm migration:revert
+
 ```
 
 
