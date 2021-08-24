@@ -33,6 +33,9 @@ $ npm i @nestjs/mapped-types
 
 # Run docker-compose in detached mode
 $ docker-compose up -d
+
+# Install TypeORM dependency for PostgreSQL
+$ npm i @nestjs/typeorm typeorm pg
 ```
 
 
