@@ -30,6 +30,9 @@ $ npm i class-validator class-transformer
 
 # Nest common transformations to reduce redundancy 
 $ npm i @nestjs/mapped-types
+
+# Run docker-compose in detached mode
+$ docker-compose up -d
 ```
 
 
