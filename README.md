@@ -24,6 +24,12 @@ $ nest g module coffees
 
 # Generate a dto
 $ nest g class coffees/dto/dtoname.dto --no-spec
+
+# Validation pipes need class-validator and class-transformer packages
+$ npm i class-validator class-transformer
+
+# Nest common transformations to reduce redundancy 
+$ npm i @nestjs/mapped-types
 ```
 
 
