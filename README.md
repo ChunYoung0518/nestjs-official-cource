@@ -18,6 +18,12 @@ $ nest generate controller modules/abc --dry-run
 # Generate customer service
 $ nest g s
 $ nest generate service
+
+# Generate a module
+$ nest g module coffees
+
+# Generate a dto
+$ nest g class coffees/dto/dtoname.dto --no-spec
 ```
 
 
