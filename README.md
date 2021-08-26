@@ -66,6 +66,9 @@ $ nest g guard common/guards/api-key
 # Generate an interceptor
 $ nest g interceptor common/interceptors/wrap-response
 
+# Generate a pipe
+$ nest g pipe common/pipes/parse-int
+
 ```
 
 
