@@ -57,6 +57,10 @@ $ npx typeorm migration:revert
 $ npm install @hapi/joi
 $ npm install --save-dev @types/hapi__joi
 
+# Generate a filter
+$ nest g filter common/filters/http-exception
+
+
 ```
 
 
