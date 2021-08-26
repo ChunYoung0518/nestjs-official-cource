@@ -11,7 +11,10 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath: '.environment', //by default it is looking for .env file, but we can let the module looking for a specific file
+      ignoreEnvFile: true, //in PROD we may not need a env file
+    }),
     CoffeesModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
