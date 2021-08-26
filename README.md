@@ -69,6 +69,10 @@ $ nest g interceptor common/interceptors/wrap-response
 # Generate a pipe
 $ nest g pipe common/pipes/parse-int
 
+# Generate a middleware
+$ nest g middleware common/middleware/logging
+
+
 ```
 
 
