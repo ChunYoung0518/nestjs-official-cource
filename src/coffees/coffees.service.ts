@@ -30,11 +30,13 @@ export class CoffeesService {
   ) {
     console.log(coffeeBrands);
     console.log('CoffeeService instanciated');
-    const databaseHost = this.configService.get<string>(
-      'DATABASE_HOST',
-      'default value',
+    const databaseHost = this.configService.get(
+      'database.host',
+      'default value: localhost',
     );
     console.log(databaseHost);
+    const databasePort = this.configService.get<number>('database.port');
+    console.log(databasePort);
   }
 
   findAll(paginationQuery: PaginationQueryDto) {
