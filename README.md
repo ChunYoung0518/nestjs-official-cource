@@ -63,6 +63,9 @@ $ nest g filter common/filters/http-exception
 # Generate a guard
 $ nest g guard common/guards/api-key
 
+# Generate an interceptor
+$ nest g interceptor common/interceptors/wrap-response
+
 ```
 
 
