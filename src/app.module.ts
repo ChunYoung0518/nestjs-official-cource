@@ -8,12 +8,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
+import * as Joi from '@hapi/joi';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.environment', //by default it is looking for .env file, but we can let the module looking for a specific file
-      ignoreEnvFile: true, //in PROD we may not need a env file
+      validationSchema: Joi.object({
+        DATABASE_HOST: Joi.required(),
+        DATABASE_PORT: Joi.number().default(5432),
+      }),
     }),
     CoffeesModule,
     TypeOrmModule.forRoot({

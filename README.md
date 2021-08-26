@@ -51,6 +51,12 @@ $ npx typeorm migration:run
 # 4. Revert migrations
 $ npx typeorm migration:revert
 
+# Dependencies for schema validation.
+# use import * as Joi from '@hapi/joi'; instead of import Joi from "@hapi/joi";
+# if you have TypeError: Cannot read property 'object' of undefined  
+$ npm install @hapi/joi
+$ npm install --save-dev @types/hapi__joi
+
 ```
 
 
