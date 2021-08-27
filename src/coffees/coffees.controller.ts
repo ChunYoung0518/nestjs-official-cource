@@ -21,9 +21,10 @@ import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { Public } from '../common/decorators/public.decorator';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 import { Protocal } from '../common/decorators/protocol.decorator';
-import { ApiForbiddenResponse, ApiResponse } from '@nestjs/swagger';
+import { ApiForbiddenResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 // @UsePipes(ValidationPipe)
+@ApiTags('coffees')
 @Controller('coffees')
 export class CoffeesController {
   constructor(private readonly coffeeService: CoffeesService) {}
