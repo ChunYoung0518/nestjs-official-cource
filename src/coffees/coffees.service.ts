@@ -27,29 +27,27 @@ export class CoffeesService {
     private readonly flavorRepository: Repository<Flavor>,
     private readonly connection: Connection,
     @Inject(COFFEE_BRANDS) coffeeBrands: string[],
-    private readonly configService: ConfigService,
-    @Inject(coffeesConfig.KEY)
-    private coffeesConfiguration: ConfigType<typeof coffeesConfig>,
+    // private readonly configService: ConfigService, // @Inject(coffeesConfig.KEY) // private coffeesConfiguration: ConfigType<typeof coffeesConfig>,
   ) {
     console.log(coffeeBrands);
     console.log('CoffeeService instanciated');
 
-    const databaseHost = this.configService.get(
-      'database.host',
-      'default value: localhost',
-    );
-    console.log(databaseHost);
-    const databasePort = this.configService.get<number>('database.port');
-    console.log(databasePort);
-
-    const coffeesConf = this.configService.get('coffees');
-    console.log(coffeesConf);
-
-    const foo = this.configService.get('coffees.foo');
-    console.log(foo);
+    // const databaseHost = this.configService.get(
+    //   'database.host',
+    //   'default value: localhost',
+    // );
+    // console.log(databaseHost);
+    // const databasePort = this.configService.get<number>('database.port');
+    // console.log(databasePort);
+    //
+    // const coffeesConf = this.configService.get('coffees');
+    // console.log(coffeesConf);
+    //
+    // const foo = this.configService.get('coffees.foo');
+    // console.log(foo);
 
     //Best practice!!
-    console.log(coffeesConfiguration.foo);
+    // console.log(coffeesConfiguration.foo);
   }
 
   findAll(paginationQuery: PaginationQueryDto) {

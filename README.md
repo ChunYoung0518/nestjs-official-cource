@@ -74,6 +74,15 @@ $ nest g middleware common/middleware/logging
 
 # Install swagger-ui-express dependency
 $npm i @nestjs/swagger swagger-ui-express
+
+# Run unit tests
+$ npm run test 
+
+# Run unit tests + collecting testing coverage
+$ npm run test:cov
+
+# Run e2e tests
+$ npm run test:e2e
 ```
 
 
