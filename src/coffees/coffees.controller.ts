@@ -21,12 +21,15 @@ import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { Public } from '../common/decorators/public.decorator';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 import { Protocal } from '../common/decorators/protocol.decorator';
+import { ApiForbiddenResponse, ApiResponse } from '@nestjs/swagger';
 
 // @UsePipes(ValidationPipe)
 @Controller('coffees')
 export class CoffeesController {
   constructor(private readonly coffeeService: CoffeesService) {}
 
+  // @ApiResponse({ status: 403, description: 'Forbidden!' })
+  @ApiForbiddenResponse({ description: 'Forbiddend!' })
   @Public()
   @UsePipes(ValidationPipe)
   @Get()
