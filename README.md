@@ -72,7 +72,8 @@ $ nest g pipe common/pipes/parse-int
 # Generate a middleware
 $ nest g middleware common/middleware/logging
 
-
+# Install swagger-ui-express dependency
+$npm i @nestjs/swagger swagger-ui-express
 ```
 
 
