@@ -88,29 +88,33 @@ describe('[Feature] Coffee - /coffees', () => {
   });
 
   it('Update one [PATCH /:id]', () => {
-    const updatedCoffee = expect.objectContaining({
+    const updatedCoffee = {
       ...coffee,
       name: 'Updated Shipwreck Roast',
-    });
+    };
 
-    return (
-      request(app.getHttpServer())
-        .patch('/coffees/2')
-        .send(updatedCoffee as UpdateCoffeeDto)
-        // .expect(HttpStatus.ACCEPTED)
-        .then(({ body }) => {
-          expect(body.name).toEqual(updatedCoffee.name);
-        })
-    );
+    return request(app.getHttpServer())
+      .patch('/coffees/5')
+      .send(updatedCoffee as UpdateCoffeeDto)
+      .expect(HttpStatus.OK)
+      .then(({ body }) => {
+        expect(body.name).toEqual(updatedCoffee.name);
+
+        return request(app.getHttpServer())
+          .get('/coffees/5')
+          .then(({ body }) => {
+            expect(body.name).toEqual(updatedCoffee.name);
+          });
+      });
   });
 
   it('Delete one [DELETE /:id]', () => {
     return request(app.getHttpServer())
-      .delete('/coffees/9')
+      .delete('/coffees/14')
       .expect(HttpStatus.OK)
       .then(() => {
         return request(app.getHttpServer())
-          .get('/coffees/9')
+          .get('/coffees/14')
           .expect(HttpStatus.NOT_FOUND);
       });
   });
