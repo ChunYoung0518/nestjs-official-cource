@@ -4,7 +4,7 @@ import { CoffeesModule } from '../../src/coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as request from 'supertest';
 import { CreateCoffeeDto } from '../../src/coffees/dto/create-coffee.dto';
-import arrayContaining = jasmine.arrayContaining;
+import { UpdateCoffeeDto } from 'src/coffees/dto/update-coffee.dto';
 
 describe('[Feature] Coffee - /coffees', () => {
   const coffee = {
@@ -13,12 +13,12 @@ describe('[Feature] Coffee - /coffees', () => {
     flavors: ['chocolate', 'vanilla'],
   };
 
-  // const expectedPartialCoffee = expect.objectContaining({
-  //   ...coffee,
-  //   flavors: expect.arrayContaining(
-  //     coffee.flavors.map((name) => expect.objectContaining({ name })),
-  //   ),
-  // });
+  const expectedCoffee = expect.objectContaining({
+    ...coffee,
+    flavors: expect.arrayContaining(
+      coffee.flavors.map((name) => expect.objectContaining({ name })),
+    ),
+  });
 
   let app: INestApplication;
 
@@ -29,7 +29,7 @@ describe('[Feature] Coffee - /coffees', () => {
         TypeOrmModule.forRoot({
           type: 'postgres',
           host: 'localhost',
-          port: 5432,
+          port: 5433,
           username: 'postgres',
           password: 'pass123',
           database: 'postgres',
@@ -64,21 +64,56 @@ describe('[Feature] Coffee - /coffees', () => {
         //   expect(body).toEqual(expectedPartialCoffee);
         // });
         .then(({ body }) => {
-          const expectedCoffee = expect.objectContaining({
-            ...coffee,
-            flavors: expect.arrayContaining(
-              coffee.flavors.map((name) => expect.objectContaining({ name })),
-            ),
-          });
           expect(body).toEqual(expectedCoffee);
         })
     );
   });
 
-  it.todo('Get all [GET /]');
-  it.todo('Get one [GET /:id]');
-  it.todo('Update one [PATCH /:id]');
-  it.todo('Delete one [DELETE /:id]');
+  it('Get all [GET /]', () => {
+    return request(app.getHttpServer())
+      .get('/coffees')
+      .then(({ body }) => {
+        console.log(body);
+        expect(body.length).toBeGreaterThan(0);
+        expect(body[body.length - 1]).toEqual(expectedCoffee);
+      });
+  });
+
+  it('Get one [GET /:id]', () => {
+    return request(app.getHttpServer())
+      .get('/coffees/5')
+      .then(({ body }) => {
+        expect(body).toEqual(expectedCoffee);
+      });
+  });
+
+  it('Update one [PATCH /:id]', () => {
+    const updatedCoffee = expect.objectContaining({
+      ...coffee,
+      name: 'Updated Shipwreck Roast',
+    });
+
+    return (
+      request(app.getHttpServer())
+        .patch('/coffees/2')
+        .send(updatedCoffee as UpdateCoffeeDto)
+        // .expect(HttpStatus.ACCEPTED)
+        .then(({ body }) => {
+          expect(body.name).toEqual(updatedCoffee.name);
+        })
+    );
+  });
+
+  it('Delete one [DELETE /:id]', () => {
+    return request(app.getHttpServer())
+      .delete('/coffees/9')
+      .expect(HttpStatus.OK)
+      .then(() => {
+        return request(app.getHttpServer())
+          .get('/coffees/9')
+          .expect(HttpStatus.NOT_FOUND);
+      });
+  });
 
   afterAll(async () => {
     await app.close();
