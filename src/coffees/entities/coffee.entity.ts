@@ -8,7 +8,7 @@ import {
 import { Flavor } from './flavor.entity';
 
 @Entity()
-export class Coffee {
+export class Coffee_postgres {
   @PrimaryGeneratedColumn()
   id: number;
 

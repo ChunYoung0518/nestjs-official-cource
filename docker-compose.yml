@@ -2,12 +2,19 @@ version: "3"
 
 services:
   db:
-    image: postgres
+    image: mongo
     restart: always
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_PASSWORD: pass123
+    ports: 
+      - 27017:27017
+    environment: 
+      MONGODB_DATABASE: nest-course
+  # db:
+  #   image: postgres
+  #   restart: always
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     POSTGRES_PASSWORD: pass123
   test-db:
     image: postgres
     restart: always

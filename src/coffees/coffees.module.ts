@@ -9,6 +9,8 @@ import { COFFEE_BRANDS } from './coffees.constants';
 import { Connection } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
 import coffeesConfig from './config/coffees.config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { CoffeeSchema } from './entities/coffee.mongo.entity';
 
 class ConfigService {}
 class DevConfigService {}
@@ -22,7 +24,11 @@ export class CoffeeBrandsFactory {
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Coffee, Flavor, Event]),
+    // TypeOrmModule.forFeature([Coffee, Flavor, Event]),
+    MongooseModule.forFeature([
+      name: Coffee.name,
+      schema: CoffeeSchema,
+    ]),
     ConfigModule.forFeature(coffeesConfig), //partial registration
   ],
   exports: [CoffeesService],
