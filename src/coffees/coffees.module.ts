@@ -1,5 +1,4 @@
 import { Injectable, Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CoffeesController } from './coffees.controller';
 import { CoffeesService } from './coffees.service';

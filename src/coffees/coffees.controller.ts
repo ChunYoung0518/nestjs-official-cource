@@ -15,15 +15,14 @@ import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
-// @UsePipes(ValidationPipe)
 @ApiTags('coffees')
 @Controller('coffees')
 export class CoffeesController {
   constructor(private readonly coffeeService: CoffeesService) {}
 
   @Get()
-  async findAll() {
-    return this.coffeeService.findAll();
+  async findAll(@Query() paginationQueryDto: PaginationQueryDto) {
+    return this.coffeeService.findAll(paginationQueryDto);
   }
 
   @Get(':id')
