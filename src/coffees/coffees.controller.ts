@@ -32,7 +32,7 @@ export class CoffeesController {
   // @ApiResponse({ status: 403, description: 'Forbidden!' })
   @ApiForbiddenResponse({ description: 'Forbiddend!' })
   @Public()
-  @UsePipes(ValidationPipe)
+  // @UsePipes(ValidationPipe)
   @Get()
   async findAll(
     @Protocal('https') protocal: string,
@@ -40,11 +40,12 @@ export class CoffeesController {
   ) {
     // await new Promise((resolve) => setTimeout(resolve, 5000));
     console.log(protocal);
-    return this.coffeeService.findAll(paginationQuery);
+    return this.coffeeService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: string) {
+  @Public()
+  findOne(@Param('id') id: string) {
     console.log(id);
     return this.coffeeService.findOne(id);
   }

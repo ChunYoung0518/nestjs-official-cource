@@ -5,7 +5,7 @@ import {
   ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Flavor } from './flavor.entity';
+// import { Flavor } from './flavor.entity';
 
 @Entity()
 export class Coffee_postgres {
@@ -18,11 +18,11 @@ export class Coffee_postgres {
   @Column()
   brand: string;
 
-  @JoinTable() //on the owner side
-  @ManyToMany((type) => Flavor, (flavor) => flavor.coffees, {
-    cascade: true,
-  })
-  flavors: Flavor[];
+  // @JoinTable() //on the owner side
+  // @ManyToMany((type) => Flavor, (flavor) => flavor.coffees, {
+  //   cascade: true,
+  // })
+  // flavors: Flavor[];
 
   @Column({ default: 0 })
   recommendations: number;

@@ -3,7 +3,7 @@ import { CoffeesService } from './coffees.service';
 import { Connection, Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Flavor } from './entities/flavor.entity';
-import { Coffee } from './entities/coffee.entity';
+import { Coffee } from './entities/coffee.mongo.entity';
 import { COFFEE_BRANDS } from './coffees.constants';
 import { ConfigService } from '@nestjs/config';
 import coffeesConfig from './config/coffees.config';
