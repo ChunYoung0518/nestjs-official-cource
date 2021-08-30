@@ -1,11 +1,7 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { HttpExceptionFilter } from './common/filters/http-exception.filter';
-import { ApiKeyGuard } from './common/guards/api-key.guard';
-import { WrapResponseInterceptor } from './common/interceptors/wrap-response.interceptor';
-import { TimeoutInterceptor } from './common/interceptors/timeout.interceptor';
+import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -19,12 +15,6 @@ async function bootstrap() {
       },
     }),
   );
-  app.useGlobalFilters(new HttpExceptionFilter());
-  app.useGlobalInterceptors(
-    new WrapResponseInterceptor(),
-    new TimeoutInterceptor(),
-  );
-  // app.useGlobalGuards(new ApiKeyGuard());
 
   const options = new DocumentBuilder()
     .setTitle('NestJS·official·course')

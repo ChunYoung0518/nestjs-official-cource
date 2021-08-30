@@ -1,13 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { CoffeesService } from './coffees.service';
-import { Connection, Repository } from 'typeorm';
-import { getRepositoryToken } from '@nestjs/typeorm';
-import { Flavor } from './entities/flavor.entity';
-import { Coffee } from './entities/coffee.mongo.entity';
-import { COFFEE_BRANDS } from './coffees.constants';
-import { ConfigService } from '@nestjs/config';
-import coffeesConfig from './config/coffees.config';
 import { NotFoundException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { Connection, Repository } from 'typeorm';
+import { COFFEE_BRANDS } from './coffees.constants';
+import { CoffeesService } from './coffees.service';
+import { Coffee } from './entities/coffee.entity';
 
 type MockRepository<T = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
 const createMockRepository = <T = any>(): MockRepository<T> => ({
@@ -24,12 +22,8 @@ describe('CoffeesService', () => {
       providers: [
         CoffeesService,
         { provide: Connection, useValue: {} },
-        { provide: COFFEE_BRANDS, useValue: ['nest'] },
+        { provide: COFFEE_BRANDS, useValue: ['nest, homemade'] },
         { provide: ConfigService, useValue: {} },
-        {
-          provide: getRepositoryToken(Flavor),
-          useValue: createMockRepository(),
-        },
         {
           provide: getRepositoryToken(Coffee),
           useValue: createMockRepository(),
