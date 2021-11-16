@@ -30,7 +30,7 @@ export class CoffeesController {
   constructor(private readonly coffeeService: CoffeesService) {}
 
   // @ApiResponse({ status: 403, description: 'Forbidden!' })
-  @ApiForbiddenResponse({ description: 'Forbiddend!' })
+  // @ApiForbiddenResponse({ description: 'Forbiddend!' })
   @Public()
   @UsePipes(ValidationPipe)
   @Get()
@@ -52,7 +52,8 @@ export class CoffeesController {
   @Post()
   // @HttpCode(HttpStatus.GONE)
   create(@Body() createCoffeeDto: CreateCoffeeDto) {
-    return this.coffeeService.create(createCoffeeDto);
+    console.log(createCoffeeDto.nestedObj.id);
+    return this.coffeeService.findOne('1');
   }
 
   @Patch(':id')

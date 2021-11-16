@@ -12,6 +12,7 @@ import * as Joi from '@hapi/joi';
 import appConfig from './config/app.config';
 import { APP_PIPE } from '@nestjs/core';
 import { CommonModule } from './common/common.module';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
   imports: [
@@ -41,6 +42,12 @@ import { CommonModule } from './common/common.module';
     CoffeeRatingModule,
     DatabaseModule,
     CommonModule,
+    BullModule.forRoot({
+      redis: {
+        host: 'localhost',
+        port: 6739,
+      },
+    }),
   ],
   controllers: [AppController],
   providers: [

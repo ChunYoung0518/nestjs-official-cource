@@ -9,6 +9,7 @@ import { COFFEE_BRANDS } from './coffees.constants';
 import { Connection } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
 import coffeesConfig from './config/coffees.config';
+import { BullModule } from '@nestjs/bull';
 
 class ConfigService {}
 class DevConfigService {}
@@ -24,6 +25,9 @@ export class CoffeeBrandsFactory {
   imports: [
     TypeOrmModule.forFeature([Coffee, Flavor, Event]),
     ConfigModule.forFeature(coffeesConfig), //partial registration
+    BullModule.registerQueue({
+      name: 'delivery',
+    }),
   ],
   exports: [CoffeesService],
   controllers: [CoffeesController],
